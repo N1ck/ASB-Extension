@@ -20,7 +20,7 @@
       ],
       "css": [
         "css/hint.min.css",
-        "css/styles.css",
+        "css/styles.css"
       ],
       "js": [
         "js/jquery-2.0.3.min.js",
