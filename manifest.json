@@ -1,0 +1,28 @@
+{
+  "name": "ASB Fastnet Helper",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "An extension to make ASB Fastnet a bit less terrible, allows you to paste a bank account number to the input fields.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "permissions": [
+    "https://fnc.asbbank.co.nz/*"
+  ],
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": [
+        "https://fnc.asbbank.co.nz/*"
+      ],
+      "js": [
+        "js/jquery-2.0.3.min.js",
+        "js/maxlength.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
