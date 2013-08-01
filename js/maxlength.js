@@ -8,9 +8,10 @@
 ;(function ( $, window, document, undefined ) {
 
     // Create the defaults once
+    // By default strip non-int characters
     var pluginName = "paster",
         defaults = {
-            propertyName: "value"
+            onlyInt: true
         };
 
     // The actual plugin constructor
@@ -31,12 +32,20 @@
 
     Plugin.prototype = {
         init: function() {
+            var onlyInt = this.options.onlyInt;
+
         	//bind event
         	this.element.onpaste = function(e){
         		if (e.clipboardData && e.clipboardData.types) {
-        			//clean data
-        			var clipboardval = e.clipboardData.getData("text/plain").replace('/\D\s/g', "").split('')
-    				Plugin.prototype.pasteEvent($(this), clipboardval);
+                    var clipboardVal = e.clipboardData.getData("text/plain");
+
+                    if(onlyInt){
+        			     clipboardVal.replace('/\D\s/g', "");
+                    }
+
+                    clipboardVal.split('');
+
+    				Plugin.prototype.pasteEvent($(this), clipboardVal);
         		}
         	}	
         },
