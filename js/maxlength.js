@@ -34,13 +34,14 @@
         init: function() {
             var onlyInt = this.options.onlyInt;
 
-        	//bind event
-        	this.element.onpaste = function(e){
-        		if (e.clipboardData && e.clipboardData.types) {
+            //bind event
+            this.element.onpaste = function(e){
+                if (e.clipboardData && e.clipboardData.types) {
                     var clipboardVal = e.clipboardData.getData("text/plain");
 
+                    
                     if(onlyInt){
-        			     clipboardVal.replace('/\D\s/g', "");
+                        clipboardVal = clipboardVal.replace(/\D/g, "");
                     }
 
                     clipboardVal.split('');
