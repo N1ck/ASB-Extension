@@ -19,14 +19,16 @@
         "https://fnc.asbbank.co.nz/*"
       ],
       "css": [
-        "css/hint.min.css",
+        "css/jquery.qtip.min.css",
         "css/styles.css"
       ],
       "js": [
         "js/jquery-2.0.3.min.js",
+        "js/jquery.qtip.js",
         "js/maxlength.js",
         "src/inject/inject.js"
-      ]
+      ],
+      "run_at": "document_end"
     }
   ]
 }
