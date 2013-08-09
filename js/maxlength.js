@@ -5,28 +5,18 @@
  *  License: To Kill
  */
 
-;(function ( $, window, document, undefined ) {
+;(function($, window, document, undefined) {
 
     // Create the defaults once
-    // By default strip non-int characters
     var pluginName = "paster",
         defaults = {
-            onlyInt: true
+            onlyInt: true //By default strip non-int characters
         };
 
-    // The actual plugin constructor
-    function Plugin( element, options ) {
+    // The plugin constructor
+    function Plugin(element, options) {
         this.element = element;
-
-        // jQuery has an extend method which merges the contents of two or
-        // more objects, storing the result in the first object. The first object
-        // is generally empty as we don't want to alter the default options for
-        // future instances of the plugin
-        this.options = $.extend( {}, defaults, options );
-
-        this._defaults = defaults;
-        this._name = pluginName;
-
+        this.options = $.extend({}, defaults, options); // Merge options with the defaults
         this.init();
     }
 
@@ -34,50 +24,48 @@
         init: function() {
             var onlyInt = this.options.onlyInt;
 
-            //bind event
-            this.element.onpaste = function(e){
+            this.element.onpaste = function(e) {
                 if (e.clipboardData && e.clipboardData.types) {
-                    var clipboardVal = e.clipboardData.getData("text/plain");
+                    var clipboardValue = e.clipboardData.getData("text/plain"); //Get the clipboard data
 
-                    
-                    if(onlyInt){
-                        clipboardVal = clipboardVal.replace(/\D/g, "");
+                    if (onlyInt) {
+                        clipboardValue = clipboardValue.replace(/\D/g, ""); //Remove all non-int
                     }
 
-                    clipboardVal.split('');
+                    clipboardValue.split('');
 
-    				Plugin.prototype.pasteEvent($(this), clipboardVal);
-        		}
-        	}	
+                    Plugin.prototype.pasteEvent($(this), clipboardValue);
+                }
+            }
         },
-        pasteEvent: function(pastedelement, pastevalue)
-        {
-        	var maxlength_fields = pastedelement.find('input[maxlength]'),
-        		pasteddata = pastevalue,
-	        	maxindex = pasteddata.length;
-	        	
-	       	maxlength_fields.val('');
-			valueindex = 0;
-    		for (var i = 0; i < maxlength_fields.length; i++) {
-    			activefield = $(maxlength_fields[i]);
+        pasteEvent: function(pastedelement, pasteValue) {
+            var targetField = pastedelement.find('input[maxlength]'), //Target fields to insert into
+                pastedData = pasteValue, //The clipboard data to be inserted
+                maxIndex = pastedData.length, //Length of clipboard data to be inserted
+                valuePosition = 0; //The position within the maxlength fields
 
-        		while(activefield.val().length < activefield.attr('maxlength') && (valueindex < maxindex)){
-        			activefield.val(activefield.val()+pasteddata[valueindex])
-        			valueindex++
-        		}
+            targetField.val(''); //Clear the target fields before inserting
+            for (var i = 0; i < targetField.length; i++) {
+                activefield = $(targetField[i]); //Current input
 
-        	}
+                //Fill up the input while it still has space based on the maxlength attribute
+                while (activefield.val().length < activefield.attr('maxlength') && (valuePosition < maxIndex)) {
+                    activefield.val(activefield.val() + pastedData[valuePosition]);
+                    valuePosition++;
+                }
+
+            }
         }
     };
 
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
-    $.fn[pluginName] = function ( options ) {
-        return this.each(function () {
+    $.fn[pluginName] = function(options) {
+        return this.each(function() {
             if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName, new Plugin( this, options ));
+                $.data(this, "plugin_" + pluginName, new Plugin(this, options));
             }
         });
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);
