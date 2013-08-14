@@ -8,7 +8,7 @@ Install from source
 --------
 
 Using Google Chrome:
-* [Download the project archive](https://github.com/Maluen/Backbone-Debugger/archive/master.zip) and extract it somewhere.
+* [Download the project archive](https://github.com/N1ck/ASB-Extension/archive/master.zip) and extract it somewhere.
 * Click on Tools -> Settings -> Extensions
 * Select "Enable developer mode" in the upper right of the window.
 * Click on "Load unpacked extension".
