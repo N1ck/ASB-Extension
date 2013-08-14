@@ -1,11 +1,9 @@
-ASB Chrome Extension
-========
+##ASB Chrome Extension
 
 A Chrome extension to make the ASB Fastnet experience a bit better.
 
 
-Install from source
---------
+###Install from source
 
 Using Google Chrome:
 * [Download the project archive](https://github.com/N1ck/ASB-Extension/archive/master.zip) and extract it somewhere.
@@ -16,6 +14,5 @@ Using Google Chrome:
 
 
 
-TODO
-=========
+###TODO
   - Think of a better name for the extension.
