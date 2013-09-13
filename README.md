@@ -16,3 +16,4 @@ Using Google Chrome:
 
 ###TODO
   - Think of a better name for the extension.
+  - Make a Logo
